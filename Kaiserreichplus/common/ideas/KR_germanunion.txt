@@ -1,0 +1,99 @@
+ideas = {
+	country = {
+		GRU_economic_independence = {
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+			picture = generic_goods_red_bonus
+			removal_cost = -1
+			modifier = {
+				autonomy_gain = 1
+				production_factory_max_efficiency_factor = 0.2
+				local_resources_factor = 0.15
+				global_building_slots_factor = 0.13
+				min_export = -0.09 
+				research_time_factor = -0.05 
+				attack_bonus_against = 0.1 
+				mobilization_speed = 0.3
+				stability_weekly = -0.02 
+			}			
+		}
+		GRU_economic_integration = {
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+			picture = generic_goods_red_bonus
+			removal_cost = -1
+			modifier = {
+				autonomy_gain = -1
+				production_factory_max_efficiency_factor = 0.2
+				local_resources_factor = 0.05
+				global_building_slots_factor = 0.05
+				min_export = 0.09 
+				research_time_factor = 0.05 
+				attack_bonus_against = -0.1 
+				mobilization_speed = 0.1
+				stability_weekly = 0.02 
+			}			
+		}
+		GRU_marketization_of_socialism = {
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+			picture = generic_goods_red_bonus
+			removal_cost = -1
+			modifier = {
+				autonomy_gain = 5
+				production_factory_max_efficiency_factor = 0.5
+				local_resources_factor = 0.25
+				global_building_slots_factor = 0.05
+				min_export = 0.25 
+				research_time_factor = -0.10 
+				mobilization_speed = 0.1
+				stability_weekly = -0.05 
+			}			
+		}
+		GRU_destroy_socdem = {
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+			picture = generic_goods_red_bonus
+			removal_cost = -1
+			modifier = {
+				social_democrat_drift = -0.10 
+				stability_weekly = -0.05 
+			}			
+		}
+		GRU_destroy_socdem2 = {
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+			picture = generic_goods_red_bonus
+			removal_cost = -1
+			modifier = {
+				social_democrat_drift = -0.02
+				stability_weekly = -0.01 
+			}			
+		}
+	}
+}
