@@ -13,6 +13,7 @@ DIETSMON = {
 	color = rgb { 200 127 45 }
 	color_ui = rgb { 238 151 52 }
 }
+EBR = {
 	color = rgb { 1 213 1 }
 	color_ui = rgb { 1 213 1 }
 }
