@@ -95,5 +95,101 @@ ideas = {
 				stability_weekly = -0.01 
 			}			
 		}
+		GRU_socialist_rise = {
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+			picture = generic_goods_red_bonus
+			removal_cost = -1
+			modifier = {
+				social_democrat_drift = 0.002
+				radical_socialist_drift = 0.002
+				paternal_autocrat_drift = -0.05
+			}			
+		}
+		GRU_liberal_rise = {
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+			picture = generic_goods_red_bonus
+			removal_cost = -1
+			modifier = {
+				social_liberal_drift = 0.002
+				market_liberal_drift = 0.002
+				paternal_autocrat_drift = -0.05
+			}			
+		}
+		GRU_tory_rise = {
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+			picture = generic_goods_red_bonus
+			removal_cost = -1
+			modifier = {
+				social_conservative_drift = 0.002
+				authoritarian_democrat_drift = 0.002
+				paternal_autocrat_drift = -0.05
+			}			
+		}
+		GRU_socialist_rise2 = {
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+			picture = generic_goods_red_bonus
+			removal_cost = -1
+			modifier = {
+				social_democrat_drift = 0.002
+				radical_socialist_drift = 0.002
+				paternal_autocrat_drift = -0.05
+			}			
+		}
+		GRU_liberal_rise2 = {
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+			picture = generic_goods_red_bonus
+			removal_cost = -1
+			modifier = {
+				social_liberal_drift = 0.002
+				market_liberal_drift = 0.002
+				paternal_autocrat_drift = -0.05
+			}			
+		}
+		GRU_tory_rise2 = {
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+			picture = generic_goods_red_bonus
+			removal_cost = -1
+			modifier = {
+				social_conservative_drift = 0.002
+				authoritarian_democrat_drift = 0.002
+				paternal_autocrat_drift = -0.05
+			}			
+		}
 	}
 }
