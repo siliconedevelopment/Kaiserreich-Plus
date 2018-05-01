@@ -919,6 +919,7 @@ country_event = {
 		remove_ideas = GRU_tory_rise2
 		remove_ideas = GRU_tory_rise
 	}
+	option = {
 
 		name = "Conservatives!"		
 		trigger = {
