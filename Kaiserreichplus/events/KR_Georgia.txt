@@ -1,0 +1,269 @@
+﻿###########################
+# Georgia Events
+###########################
+
+add_namespace = geo
+
+# Georgia introduction
+country_event = {
+	id = geo.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event geo.1"}
+	title = geo.1.t
+	desc = geo.1.d
+
+	fire_only_once = yes
+
+	trigger = {
+		date > 1936.1.1
+		tag = GEO
+	}
+
+	option = {
+		name = geo.1.a #Interesting...
+		hidden_effect = {
+			country_event = { id = geo.2 hours = 720 }
+		}
+	}
+}
+country_event = {
+	id = geo.2
+	title = "Spread revolution to Azerbaijan?"
+	desc = "The Azerbaijani communists have demanded a military take-over over Azerbaijan. Should we invade or keep our distance?"
+
+	fire_only_once = yes
+
+	trigger = {
+		tag = GEO
+		date > 1936.6.21
+		has_government = totalist
+		NOT = {
+			has_country_flag = stalin
+		}
+	}
+
+	option = {
+		name = "Invade!"
+		ai_chance = { factor = 45 }
+		set_country_flag = beriageo
+		puppet = AZR
+		AZR = {
+			create_country_leader = {
+				name = "Lavrentij Beria"
+				desc = "POLITICS_BERIA_DESC"
+				picture = "Portrait_Georgia_Beria.tga"
+				expire = "1965.1.1"
+				ideology = leninist
+				traits = {}
+
+			}
+			division_template = { name = "Azerbaycan Inqilab Ordusu" regiments = { infantry = { x = 0 y = 0 } infantry = { x = 1 y = 0 } } } 
+		}		
+	}
+	option = {
+		name = "Leave them alone!"
+		ai_chance = { factor = 45 }
+	}
+}
+# Lavrentij Beria makes his move
+country_event = {
+	id = geo.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event geo.2"}
+	title = geo.2.t
+	desc = geo.2.d
+
+	fire_only_once = yes
+
+	trigger = {
+		tag = GEO
+		date > 1936.6.21
+		has_government = totalist
+		NOT = {
+			has_country_flag = stalin
+			AZR = { is_puppet_of = GEO }
+		}
+	}
+
+	option = {
+		name = geo.2.a # Beria takes full control of the government!
+		ai_chance = { factor = 100 }
+		retire_country_leader = yes
+		set_country_flag = beria
+		create_country_leader = {
+			name = "Lavrentij Beria"
+			desc = "POLITICS_BERIA_DESC"
+			picture = "Portrait_Georgia_Beria.tga"
+			expire = "1965.1.1"
+			ideology = leninist
+			traits = {}
+		}
+	}
+}
+country_event = {
+	id = geo.4
+	title = "Stalin takes control!"
+	desc = "Stalin, one of our ministers has took control over the government whilst [GetLeader] was on a state visit to Baku, discussing the reestablishment of Transcaucaisa with [AZR.GetLeader]. This will lead to civil war."
+
+	fire_only_once = yes
+
+	trigger = {
+		tag = GEO
+		date > 1936.6.19
+		has_government = totalist
+		AZR = { is_puppet_of = GEO }
+		has_country_flag = beriageo
+		NOT = {
+			has_country_flag = beria
+		}
+	}
+
+	option = {
+		name = "Stalin takes full control of the government!"
+		ai_chance = { factor = 100 }
+		retire_country_leader = yes
+		set_country_flag = stalin
+		add_named_threat = { threat = 2 name = "Transcaucaisan Civil War" }
+		release_puppet = AZR
+		create_country_leader = {
+			name = "Josef B. Stalin"
+			desc = "POLITICS_BERIA_DESC"
+			picture = "Portrait_Joseph_B_Stalin.tga"
+			expire = "1965.1.1"
+			ideology = leninist
+			traits = {}
+		}
+		set_cosmetic_tag = GEO_transcaucasian
+		AZR = {
+			set_cosmetic_tag = GEO_transcaucasian
+		}
+		declare_war_on = { target = AZR type = annex_everything } 
+	}
+}
+add_namespace = geohidden
+country_event = {
+	id = geohidden.1
+	hidden = yes
+	trigger = {
+		229 = { is_fully_controlled_by = ROOT }
+	}
+	immediate = {
+		if = {
+			limit = {
+				tag = GEO
+			}		
+			every_owned_state = { add_core_of = SOV } 
+			every_owned_state = { add_core_of = GEO } 
+		}
+		if = {
+			limit = {
+				tag = AZR
+			}		
+			every_owned_state = { add_core_of = SOV } 
+			every_owned_state = { add_core_of = AZR } 
+		}
+	}
+}
+country_event = {
+	id = geo.5
+	title = "Union with Armenia"
+	desc = "After the unification with Azerbaijan, the Supreme Soviet has asked to go and invade Armenia, should we completely unify Transcaucaisa or leave them be?"
+	trigger = {
+		tag = AZR
+		has_cosmetic_tag = GEO_transcaucasian
+		NOT = {
+			country_exists = GEO
+		}
+		OR = {
+			tag = GEO
+			has_cosmetic_tag = GEO_transcaucasian
+			NOT = {
+				country_exists = AZR
+			}
+		}
+	}
+	option = {
+		name = "Invade!"
+		trigger = {
+			tag = GEO
+		}
+		declare_war_on = {
+			target = ARM
+			type = annex_everything
+		}
+		ARM = {
+			every_owned_state = { add_core_of = GEO } 
+		}
+	}
+	option = {
+		name = "Invade!"
+		trigger = {
+			tag = AZR
+		}
+		declare_war_on = {
+			target = ARM
+			type = annex_everything
+		}
+		ARM = {
+			every_owned_state = { add_core_of = AZR } 
+		}
+	}
+}
+country_event = {
+	id = geohidden.2
+	hidden = yes
+	trigger = {
+		230 = { is_fully_controlled_by = ROOT }
+	}
+	immediate = {
+		if = {
+			limit = {
+				tag = GEO
+			}		
+			every_owned_state = { add_core_of = SOV } 
+			every_owned_state = { add_core_of = GEO } 
+		}
+		if = {
+			limit = {
+				tag = AZR
+			}		
+			every_owned_state = { add_core_of = SOV } 
+			every_owned_state = { add_core_of = AZR } 
+		}
+	}
+}
+country_event = {
+	id = geo.5
+	title = "Union with the Soviets"
+	desc = "The soviets have requested unification, should we unify, become a puppet, or be independent"
+	trigger = {
+		tag = AZR
+		has_cosmetic_tag = GEO_transcaucasian
+		NOT = {
+			country_exists = GEO
+		}
+		OR = {
+			tag = GEO
+			has_cosmetic_tag = GEO_transcaucasian
+			NOT = {
+				country_exists = AZR
+			}
+		}
+	}
+	option = {
+		name = "Become part of the Soviet Union!!"
+		trigger = {
+			tag = GEO
+			tag = AZR
+		}
+		SOV = { annex_country = { target = GEO } }
+		SOV = { annex_country = { target = ASR } }
+	}
+	option = {
+		name = "Bercome a puppet!"
+		trigger = {
+			tag = GEO
+			tag = AZR
+		}
+		SOV = { puppet = GEO }
+		SOV = { puppet = AZR }
+	}
+}
