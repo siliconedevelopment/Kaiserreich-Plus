@@ -639,7 +639,7 @@ country_event = {
 		ai_chance = { 
 			factor = 100
 			modifier = {
-				factor = 0
+				factor = 1
 				has_war = yes
 			}
 		}
@@ -649,17 +649,26 @@ country_event = {
 			set_politics = { 
 				paternal_autocrat = { popularity = 90 }
 				authoritarian_democrat = { popularity = 1 }
-				radical_socialist = { popularity = 9 }
+				radical_socialist = { popularity = 8 }
 				ruling_party = paternal_autocrat
 			}
+		}
+		clr_country_flag = election
+		hidden_effect = {
+			country_event = { id = germanunion.2 hours = 35040 }
 		}
 	}
 	option = {
 		ai_chance = {
 			factor = 0
 			modifier = {	
-				factor = 100
+				factor = 99
 				has_war = yes
+			}
+		}
+		trigger = {
+			NOT = {
+				has_country_flag = election
 			}
 		}
 		name = "Have the Bundestag take over authorities."
@@ -668,12 +677,12 @@ country_event = {
 			elections_allowed = no
 		}
 		hidden_effect = {
-			country_event = { id = germanunion.1 hours = 35040 }
+			country_event = { id = germanunion.2 hours = 35040 }
 		}
 	}
 }
 country_event = {
-	id = germanunion.2
+	id = germanunion.3
 	title = "Election of [ROOT.GetName] - Polling 1"
 	desc = "The first fortnight of polling has begun!"
 	is_triggered_only = yes
@@ -696,7 +705,7 @@ country_event = {
 	}
 }
 country_event = {
-	id = germanunion.3
+	id = germanunion.4
 	title = "Election of [ROOT.GetName] - Polling 2"
 	desc = "The second fortnight of polling has begun!"
 	is_triggered_only = yes
@@ -741,7 +750,7 @@ country_event = {
 	}
 }
 country_event = {
-	id = germanunion.3
+	id = germanunion.5
 	title = " Election of [ROOT.GetName] - Polling 3"
 	desc = "The third fortnight of polling has begun!"
 	is_triggered_only = yes
@@ -801,6 +810,9 @@ country_event = {
 		}
 	}
 	mean_time_to_happen = { days = 14 }
+	immediate = {
+		set_country_flag = election
+	}
 	option = {
 		name = "Socialists!"
 		trigger = {
