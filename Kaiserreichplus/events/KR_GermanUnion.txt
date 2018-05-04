@@ -649,7 +649,7 @@ country_event = {
 			set_politics = { 
 				paternal_autocrat = { popularity = 90 }
 				authoritarian_democrat = { popularity = 1 }
-				radical_socialist = { popularity = 8 }
+				radical_socialist = { popularity = 9 }
 				ruling_party = paternal_autocrat
 			}
 		}
