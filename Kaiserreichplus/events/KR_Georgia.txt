@@ -17,12 +17,9 @@ country_event = {
 		date > 1936.1.1
 		tag = GEO
 	}
-
+	mean_time_to_happen = { days = 1 }
 	option = {
 		name = geo.1.a #Interesting...
-		hidden_effect = {
-			country_event = { id = geo.2 hours = 720 }
-		}
 	}
 }
 country_event = {
@@ -34,13 +31,13 @@ country_event = {
 
 	trigger = {
 		tag = GEO
-		date > 1936.6.21
+		date > 1936.4.1
 		has_government = totalist
 		NOT = {
 			has_country_flag = stalin
 		}
 	}
-
+	mean_time_to_happen = { days = 3 }
 	option = {
 		name = "Invade!"
 		ai_chance = { factor = 45 }
@@ -118,7 +115,7 @@ country_event = {
 			AZB = { is_puppet_of = GEO }
 		}
 	}
-
+	mean_time_to_happen = { days = 3 }
 	option = {
 		name = geo.2.a # Beria takes full control of the government!
 		ai_chance = { factor = 100 }
@@ -151,7 +148,7 @@ country_event = {
 			has_country_flag = beria
 		}
 	}
-
+	mean_time_to_happen = { days = 3 }
 	option = {
 		name = "Stalin takes full control of the government!"
 		ai_chance = { factor = 100 }
@@ -234,6 +231,9 @@ country_event = {
 	}
 	mean_time_to_happen = { days = 3 }
 	option = {
+		ai_chance = {
+			factor = 75
+		}
 		name = "Invade!"
 		trigger = {
 			tag = GEO
@@ -247,6 +247,9 @@ country_event = {
 		}
 	}
 	option = {
+		ai_chance = {
+			factor = 75
+		}
 		name = "Invade!"
 		trigger = {
 			tag = AZB
@@ -259,6 +262,19 @@ country_event = {
 			every_owned_state = { add_core_of = AZB } 
 		}
 	}
+	option = {
+		ai_chance = {
+			factor = 25
+		}
+		name = "Let them be!"
+		ARM = {
+			every_owned_state = { add_core_of = AZB } 
+		}
+		ARM = {
+			every_owned_state = { add_core_of = GEO } 
+		}
+	}
+
 }
 country_event = {
 	id = geohidden.2
@@ -293,12 +309,14 @@ country_event = {
 		NOT = {
 			country_exists = GEO
 		}
+		country_exists = SOV
 		OR = {
 			tag = GEO
 			has_cosmetic_tag = GEO_transcaucasian
 			NOT = {
 				country_exists = AZB
 			}
+			country_exists = SOV
 		}
 	}
 	mean_time_to_happen = { days = 256 }
@@ -316,7 +334,7 @@ country_event = {
 	}
 	option = {
 		ai_chance = {
-			factor = 25
+			factor = 35
 		}
 		name = "Bercome a puppet!"
 		trigger = {
@@ -326,13 +344,18 @@ country_event = {
 	}
 	option = {
 		ai_chance = {
-			factor = 10
+			factor = 35
 		}
 		name = "Stay independent!"
 		trigger = {
 			tag = GEO
 		}
-		SOV = { puppet = AZB }
+		SOV = {
+			declare_war_on = {
+				target = GEO
+				type = annex_everything
+			}
+		}
 	}
 	
 }
