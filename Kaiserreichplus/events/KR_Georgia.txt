@@ -1,0 +1,623 @@
+﻿###########################
+# Georgia Events
+###########################
+
+add_namespace = geo
+add_namespace = geohidden
+# Georgia introduction
+country_event = {
+	id = geo.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event geo.1"}
+	title = geo.1.t
+	desc = geo.1.d
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		date > 1936.1.1
+		tag = GEO
+	}
+	mean_time_to_happen = { days = 1 }
+	option = {
+		name = geo.1.a #Interesting...
+		set_party_name = { ideology = totalist long_name = "Communist Party of Georgia" name = "CPG" } 
+	}
+}
+country_event = {
+	id = geo.2
+	title = "Spread communist revolution to Azerbaijan?"
+	desc = "The Azerbaijani communists have demanded a military take-over over Azerbaijan. Should we invade or keep our distance?"
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	trigger = {
+		tag = GEO
+		date > 1936.4.1
+		has_government = totalist
+		NOT = {
+			has_country_flag = stalin
+		}
+	}
+	mean_time_to_happen = { days = 3 }
+	option = {
+		name = "Invade!"
+		ai_chance = { factor = 45 }
+		set_country_flag = beriageo
+		random_list = { 
+			65 = { 
+				add_political_power = -25 
+				declare_war_on = {
+					target = AZB
+					type = annex_everything
+				}
+				AZB = {
+					create_country_leader = {
+						name = "Lavrentij Beria"
+						desc = "POLITICS_BERIA_DESC"
+						picture = "Portrait_Georgia_Beria.tga"
+						expire = "1965.1.1"
+						ideology = leninist
+						traits = {}
+
+					}
+				}
+			} 
+			35 = { 
+				add_political_power = 25 
+				puppet = AZB
+				AZB = {
+					create_country_leader = {
+						name = "Lavrentij Beria"
+						desc = "POLITICS_BERIA_DESC"
+						picture = "Portrait_Georgia_Beria.tga"
+						expire = "1965.1.1"
+						ideology = leninist
+						traits = {}
+
+					}
+					division_template = { name = "Azerbaycan Inqilab Ordusu" regiments = { infantry = { x = 0 y = 0 } infantry = { x = 1 y = 0 } } } 
+				}	
+			} 
+		} 
+		AZB = {
+			create_country_leader = {
+				name = "Lavrentij Beria"
+				desc = "POLITICS_BERIA_DESC"
+				picture = "Portrait_Georgia_Beria.tga"
+				expire = "1965.1.1"
+				ideology = leninist
+				traits = {}
+
+			}
+		}		
+	}
+	option = {
+		name = "Leave them alone!"
+		ai_chance = { factor = 45 }
+	}
+}
+# Lavrentij Beria makes his move
+country_event = {
+	id = geo.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event geo.2"}
+	title = geo.2.t
+	desc = geo.2.d
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	trigger = {
+		tag = GEO
+		date > 1936.6.21
+		has_government = totalist
+		NOT = {
+			has_country_flag = stalin
+			AZB = { is_puppet_of = GEO }
+		}
+	}
+	mean_time_to_happen = { days = 3 }
+	option = {
+		name = geo.2.a # Beria takes full control of the government!
+		ai_chance = { factor = 100 }
+		retire_country_leader = yes
+		set_country_flag = beria
+		create_country_leader = {
+			name = "Lavrentij Beria"
+			desc = "POLITICS_BERIA_DESC"
+			picture = "Portrait_Georgia_Beria.tga"
+			expire = "1965.1.1"
+			ideology = leninist
+			traits = {}
+		}
+	}
+}
+country_event = {
+	id = geo.4
+	title = "Stalin takes control!"
+	desc = "Stalin, one of our ministers has took control over the government whilst [GetLeader] was on a state visit to Baku, discussing the reestablishment of Transcaucaisa with [AZB.GetLeader]. This will lead to civil war."
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	trigger = {
+		tag = GEO
+		date > 1936.6.19
+		has_government = totalist
+		AZB = { is_puppet_of = GEO }
+		has_country_flag = beriageo
+		NOT = {
+			has_country_flag = beria
+		}
+	}
+	mean_time_to_happen = { days = 3 }
+	option = {
+		name = "Stalin takes full control of the government!"
+		ai_chance = { factor = 33 }
+		retire_country_leader = yes
+		set_country_flag = stalin
+		add_named_threat = { threat = 2 name = "Transcaucasian Civil War" }
+		release_puppet = AZB
+		create_country_leader = {
+			name = "Josef B. Stalin"
+			desc = "POLITICS_BERIA_DESC"
+			picture = "Portrait_Joseph_B_Stalin.tga"
+			expire = "1965.1.1"
+			ideology = leninist
+			traits = {
+				dictator
+			}
+		}
+		set_cosmetic_tag = GEO_transcaucasian
+		AZB = {
+			set_cosmetic_tag = GEO_transcaucasian
+			create_country_leader = {
+				name = "Ali Agha Shikhlinski"
+				desc = "POLITICS_BERIA_DESC"
+				picture = "Portrait_Azerbaijan_Ali_Agha_Shikhlinski.tga"
+				expire = "1965.1.1"
+				ideology = leninist
+				traits = {}
+			}
+		}
+		declare_war_on = { target = AZB type = annex_everything } 
+	}
+	option = {
+		name = "Resist!"
+		ai_chance = { factor = 33 }
+		add_named_threat = { threat = 2 name = "Transcaucasian Civil War" }
+		release_puppet = AZB
+		create_country_leader = {
+			name = "Josef B. Stalin"
+			desc = "POLITICS_BERIA_DESC"
+			picture = "Portrait_Joseph_B_Stalin.tga"
+			expire = "1965.1.1"
+			ideology = leninist
+			traits = {
+				dictator
+			}
+		}
+		AZB = {
+			set_cosmetic_tag = GEO_transcaucasian
+			create_country_leader = {
+				name = "Ali Agha Shikhlinski"
+				desc = "POLITICS_BERIA_DESC"
+				picture = "Portrait_Azerbaijan_Ali_Agha_Shikhlinski.tga"
+				expire = "1965.1.1"
+				ideology = leninist
+				traits = {}
+			}
+		}
+		AZB = {
+			declare_war_on = { target = GEO type = annex_everything }
+		}
+		GEO = { change_tag_from = AZB }
+	}
+	option = {
+		name = "Organize a coup!"
+		ai_chance = { factor = 34 }
+		trigger = {
+			paternal_autocrat > 0.2
+		}
+		set_cosmetic_tag = GEO_coup
+		release_puppet = AZB
+		set_politics = {
+			ruling_party = paternal_autocrat
+		}
+		AZB = { country_event = { id = azerbaijan.1 hours = 24 } }
+		country_event = { id = geo.7 hours = 48 }
+	}
+}
+country_event = {
+	id = geohidden.1
+	hidden = yes
+	fire_only_once = yes
+	is_triggered_only = yes
+	trigger = {
+		229 = { is_fully_controlled_by = ROOT }
+		has_country_flag = stalin
+	}
+	immediate = {
+		if = {
+			limit = {
+				tag = GEO
+			}		
+			every_owned_state = { add_core_of = SOV } 
+			every_owned_state = { add_core_of = GEO } 		
+			create_country_leader = {
+				name = "Josef B. Stalin"
+				desc = "POLITICS_BERIA_DESC"
+				picture = "Portrait_Joseph_B_Stalin.tga"
+				expire = "1965.1.1"
+				ideology = leninist
+				traits = {
+					#
+				}
+			}
+		}
+		if = {
+			limit = {
+				tag = AZB
+				231 = { is_fully_controlled_by = ROOT }
+			}		
+			every_owned_state = { add_core_of = SOV } 
+			every_owned_state = { add_core_of = AZB } 
+			create_country_leader = {
+				name = "Lavrentij Beria"
+				desc = "POLITICS_BERIA_DESC"
+				picture = "Portrait_Georgia_Beria.tga"
+				expire = "1965.1.1"
+				ideology = leninist
+				traits = {}
+			}
+		}
+
+	}
+}
+country_event = {
+	id = geo.5
+	title = "Union with Armenia"
+	desc = "After the unification wars, the Supreme Soviet has asked to go and invade Armenia, should we completely unify Transcaucaisa or leave them be?"
+	fire_only_once = yes
+	is_triggered_only = yes
+	trigger = {
+		tag = AZB
+		has_cosmetic_tag = GEO_transcaucasian
+		NOT = {
+			country_exists = GEO
+		}
+		OR = {
+			tag = GEO
+			has_cosmetic_tag = GEO_transcaucasian
+			NOT = {
+				country_exists = AZB
+			}
+		}
+	}
+	mean_time_to_happen = { days = 3 }
+	option = {
+		ai_chance = {
+			factor = 75
+		}
+		name = "Invade!"
+		trigger = {
+			tag = GEO
+		}
+		declare_war_on = {
+			target = ARM
+			type = annex_everything
+		}
+		ARM = {
+			every_owned_state = { add_core_of = GEO } 
+		}
+	}
+	option = {
+		ai_chance = {
+			factor = 75
+		}
+		name = "Invade!"
+		trigger = {
+			tag = AZB
+		}
+		declare_war_on = {
+			target = ARM
+			type = annex_everything
+		}
+		ARM = {
+			every_owned_state = { add_core_of = AZB } 
+		}
+	}
+	option = {
+		ai_chance = {
+			factor = 25
+		}
+		name = "Let them be!"
+		ARM = {
+			every_owned_state = { add_core_of = AZB } 
+		}
+		ARM = {
+			every_owned_state = { add_core_of = GEO } 
+		}
+	}
+
+}
+country_event = {
+	id = geohidden.2
+	hidden = yes
+	fire_only_once = yes
+	is_triggered_only = yes
+	trigger = {
+		230 = { is_fully_controlled_by = ROOT }
+	}
+	immediate = {
+		if = {
+			limit = {
+				tag = GEO
+			}		
+			every_owned_state = { add_core_of = SOV } 
+			every_owned_state = { add_core_of = GEO } 
+		}
+		if = {
+			limit = {
+				tag = AZB
+			}		
+			every_owned_state = { add_core_of = SOV } 
+			every_owned_state = { add_core_of = AZB } 
+		}
+	}
+}
+country_event = {
+	id = geo.5
+	title = "Union with the Soviets"
+	desc = "The soviets have requested unification, should we unify, become a puppet, or be independent"
+	fire_only_once = yes
+	is_triggered_only = yes
+	trigger = {
+		tag = AZB
+		has_cosmetic_tag = GEO_transcaucasian
+		NOT = {
+			country_exists = GEO
+		}
+		country_exists = SOV
+		OR = {
+			tag = GEO
+			has_cosmetic_tag = GEO_transcaucasian
+			NOT = {
+				country_exists = AZB
+			}
+			country_exists = SOV
+		}
+	}
+	mean_time_to_happen = { days = 256 }
+	option = {
+		ai_chance = {
+			factor = 65
+		}
+		name = "Become part of the Soviet Union!!"
+		trigger = {
+			tag = GEO
+			tag = AZB
+		}
+		SOV = { annex_country = { target = GEO } }
+		SOV = { annex_country = { target = AZB } }
+	}
+	option = {
+		ai_chance = {
+			factor = 35
+		}
+		name = "Bercome a puppet!"
+		trigger = {
+			tag = AZB
+		}
+		SOV = { puppet = AZB }
+	}
+	option = {
+		ai_chance = {
+			factor = 35
+		}
+		name = "Stay independent!"
+		trigger = {
+			tag = GEO
+		}
+		SOV = {
+			declare_war_on = {
+				target = GEO
+				type = annex_everything
+			}
+		}
+	}
+	
+}
+country_event = {
+	id = geo.6
+	title = "Annex Greater Lazistan?"
+	desc = "With the Ottomans losing their war with the Arabs, we could get some land in majority Georgian-Armenian territory. The Ottomans have already negotiated to transfer Lazistan over, however it being demiliterized."
+	fire_only_once = yes
+	is_triggered_only = yes
+	trigger = {
+		tag = GEO
+		NOT = {
+			1000 = { is_controlled_by = OTT } 
+			291 = { is_controlled_by = OTT } 
+		}
+	}
+	option = {
+		ai_chance = {
+			factor = 53
+		}
+		name = "Annex! (With Demiliterization)"
+		1001 = { set_state_name = "Laziani" } 
+		add_state_core = 1001
+		1001 = { set_demilitarized_zone = yes } 		
+		GEO = { set_state_owner = 1001 } 
+	}
+	option = {
+		ai_chance = {
+			factor = 37
+		}
+		name = "We cannot negotiate with the imperialists!"
+		add_state_core = 1001
+		create_wargoal = { type = annex_everything target = OTT } 
+		if = {
+			limit = {
+				country_exists = TUR
+			}
+			create_wargoal = { type = annex_everything target = TUR } 
+		}
+	}
+	option = {
+		ai_chance = {
+			factor = 10
+		}
+		name = "We can't do this right now"
+	}
+}
+country_event = {
+	id = geohidden.2
+	hidden = yes
+	fire_only_once = yes
+	is_triggered_only = yes
+	trigger = {
+		1001 = { is_fully_controlled_by = ROOT }
+	}
+	immediate = {
+		if = {
+			limit = {
+				tag = GEO
+			}		 
+			every_owned_state = { add_core_of = GEO } 
+			white_peace = OTT
+			white_peace = TUR
+			1001 = { set_state_name = "Laziani" } 
+		}
+	}
+}
+country_event = {
+	id = geo.7
+	title = "Military Government Congress"
+	desc = "The Military Government only has control over §%60§! of the country, and fear of warlords or ex-communists taking control of land is rising. Should we convene a congress in Tibilisi or not?"
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		ai_chance = {
+			factor = 91
+		}
+		name = "Start the congress!"
+		country_event = { id = geo.8 hours = 24 }
+		set_political_party = { ideology = paternal_autocrat popularity = 25 } 
+	}
+	option = {
+		ai_chance = {
+			factor = 9
+		}
+		name = "Hold the congress until later."
+		country_event = { id = geo.8 hours = 1258 }
+		set_political_party = { ideology = paternal_autocrat popularity = 25 } 
+	}
+}
+country_event = {
+	id = geo.8
+	title = "Status of the Communist Party - Military Government Congress"
+	desc = "The Military Government is overwhelmingly against communism and wishes to ban the party immediately. This is even backed by Radical Socialists, however not by Syndicalists. What should we do?"
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		ai_chance = {
+			factor = 91
+		}
+		name = "Ban the communist party!"
+		set_political_party = { ideology = totalist popularity = -100 } 
+		country_event = { id = geo.9 hours = 24 }
+	}
+	option = {
+		ai_chance = {
+			factor = 9
+		}
+		name = "Don't ban them!"
+		set_political_party = { ideology = paternal_autocrat popularity = -5 } 
+		country_event = { id = geo.9 hours = 24 }
+	}
+}
+country_event = {
+	id = geo.9
+	title = "Azerbaijani War - Military Government Congress"
+	desc = "The Military Government is currently at war with Azerbaijan, a country that has allowed Georgian communists to seek asylum. They currently have an ally paramilitary group called the 'Georgian Bolshevik Liberation Army', what should we do?"
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		ai_chance = {
+			factor = 35
+		}
+		name = "Death to Azerbaijan!"
+		load_oob = "GEO"
+		country_event = { id = geo.10 hours = 24 }
+	}
+	option = {
+		ai_chance = {
+			factor = 65
+		}
+		name = "Seek peace."
+		set_political_party = { ideology = paternal_autocrat popularity = -5 } 
+		country_event = { id = geo.10 hours = 24 }
+		AZB = { country_event = { id = azerbaijan.2 hours = 24 } }
+	}
+}
+
+country_event = {
+	id = geo.10
+	title = "Status of the Bagrationi Dynasty - Military Government Congress"
+	desc = "Some of the Military Government is fond of monarchism and wishes for a return to the Bagrationi Dynasty, they also believe that a semi-constitutional monarchy is ideal for Georgia. Should we become a monarchy?" 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		ai_chance = {
+			factor = 50
+		}
+		name = "Declare Georgia a Monarchy!"
+		add_stability = -0.1
+		set_political_party = { ideology = paternal_autocrat popularity = 5 } 
+		country_event = { id = geo.11 hours = 24 }
+		set_cosmetic_tag = GEO_kingdom
+	}
+	option = {
+		ai_chance = {
+			factor = 50
+		}
+		name = "Suppress Monarchism!"
+		set_political_party = { ideology = paternal_autocrat popularity = -5 } 
+		country_event = { id = geo.10 hours = 24 }
+	}
+}
+country_event = {
+	id = geo.10
+	title = "Hold elections? - Military Government Congress"
+	desc = "Some of the Military Government is fond of liberal democracy, and have suggested that we become one in the near future, what do we say to this?" 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		ai_chance = {
+			factor = 50
+		}
+		name = "Declare Georgia a Republic!"
+		add_stability = -0.1
+		set_political_party = { ideology = paternal_autocrat popularity = -15 } 
+		country_event = { id = geo.11 hours = 24 }
+		set_cosmetic_tag = GEO_Republic
+	}
+	option = {
+		ai_chance = {
+			factor = 50
+		}
+		name = "Suppress Republicanism!"
+		set_political_party = { ideology = paternal_autocrat popularity = -5 } 
+		country_event = { id = geo.11 hours = 24 }
+	}
+}
+country_event = {
+	id = geo.11
+	title = "End of the Military Government Congress"
+	desc = "" 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = "Rule Georgia!"
+		add_stability = 0.2
+	}
+}
