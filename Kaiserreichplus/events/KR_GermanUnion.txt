@@ -557,8 +557,8 @@ country_event = {
 ##### OTHER IDEOLOGY ELECTIONS #####
 country_event = {
 	id = germanunion.2
-	title = "Election of [GetDateText]"
-	desc = "The [overload.GetName] has demanded we hold an election next week, shall we or wait until the end of the war?"
+	title = "Election of [ROOT.GetName]"
+	desc = "The [overload.GetName] has demanded we hold an election next week, shall we or wait?"
 	is_triggered_only = yes
 	fire_only_once = yes
 	immediate = {
@@ -637,31 +637,325 @@ country_event = {
 	}
 	option = {
 		ai_chance = { 
-			factor = 20
+			factor = 100
+			modifier = {
+				factor = 1
+				has_war = yes
+			}
 		}
 		name = "Hold the election!"
 		country_event = { id = germanunion.3 hours = 24 }
+		set_politics = {
+			set_politics = { 
+				paternal_autocrat = { popularity = 90 }
+				authoritarian_democrat = { popularity = 1 }
+				radical_socialist = { popularity = 9 }
+				ruling_party = paternal_autocrat
+			}
+		}
+		clr_country_flag = election
+		hidden_effect = {
+			country_event = { id = germanunion.2 hours = 35040 }
+		}
 	}
 	option = {
 		ai_chance = {
-			factor = 80
+			factor = 0
+			modifier = {	
+				factor = 99
+				has_war = yes
+			}
 		}
-		name = "Have the Bundestag take over authorities until the end of the war"
+		trigger = {
+			NOT = {
+				has_country_flag = election
+			}
+		}
+		name = "Have the Bundestag take over authorities."
 		set_country_flag = bundestag_dictatorship
 		set_politics = {
 			elections_allowed = no
 		}
+		hidden_effect = {
+			country_event = { id = germanunion.2 hours = 35040 }
+		}
 	}
 }
 country_event = {
-	id = germanunion.2
-	title = "Election of [GetDateText]"
-	desc = "The [overload.GetName] has demanded we hold an election next week, shall we or wait until the end of the war?"
+	id = germanunion.3
+	title = "Election of [ROOT.GetName] - Polling 1"
+	desc = "The first fortnight of polling has begun!"
 	is_triggered_only = yes
 	fire_only_once = yes
 
 	option = {
-		name = "Hold the election!"
-		# country_event = { id = germanunion.3 hours = 24 }
+		name = "Socialists!"
+		set_country_flag = socialists_on
+		add_ideas = GRU_socialist_rise
+	}
+	option = {
+		name = "Liberals!"
+		set_country_flag = liberal_on
+		add_ideas = GRU_liberal_rise
+	}
+	option = {
+		name = "Conservatives!"
+		set_country_flag = tories_on
+		add_ideas = GRU_tory_rise
+	}
+}
+country_event = {
+	id = germanunion.4
+	title = "Election of [ROOT.GetName] - Polling 2"
+	desc = "The second fortnight of polling has begun!"
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		has_country_flag = socialists_on
+		OR = {
+			has_country_flag = liberal_on
+		}
+		OR = {
+			has_country_flag = tories_on
+		}
+	}
+	mean_time_to_happen = { days = 14 }
+	option = {
+		name = "Socialists!"
+		trigger = {
+			radical_socialist > 0.1
+			social_democrat > 0.1
+		}
+		set_country_flag = socialists_on2
+		add_ideas = GRU_socialist_rise2
+	}
+	option = {
+		name = "Liberals!"
+		trigger = {
+			market_liberal > 0.1
+			social_liberal > 0.1
+		}
+		set_country_flag = liberal_on2
+		add_ideas = GRU_liberal_rise2
+	}
+	option = {
+
+		name = "Conservatives!"		
+		trigger = {
+			social_conservative > 0.1
+			authoritarian_democrat > 0.1
+		}
+		set_country_flag = tories_on2
+		add_ideas = GRU_tory_rise2
+	}
+}
+country_event = {
+	id = germanunion.5
+	title = " Election of [ROOT.GetName] - Polling 3"
+	desc = "The third fortnight of polling has begun!"
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		has_country_flag = socialists_on2
+		OR = {
+			has_country_flag = liberal_on2
+		}
+		OR = {
+			has_country_flag = tories_on2
+		}
+	}
+	mean_time_to_happen = { days = 14 }
+	option = {
+		name = "Socialists!"
+		trigger = {
+			radical_socialist > 0.3
+			social_democrat > 0.3
+		}
+		set_country_flag = socialists_on3
+		add_ideas = GRU_socialist_rise3
+	}
+	option = {
+		name = "Liberals!"
+		trigger = {
+			market_liberal > 0.3
+			social_liberal > 0.3
+		}
+		set_country_flag = liberal_on3
+		add_ideas = GRU_liberal_rise3
+	}
+	option = {
+
+		name = "Conservatives!"		
+		trigger = {
+			social_conservative > 0.3
+			authoritarian_democrat > 0.3
+		}
+		set_country_flag = tories_on3
+		add_ideas = GRU_tory_rise3
+	}
+}
+country_event = {
+	id = germanunion.3
+	title = " Election of [ROOT.GetName] - Election Day"
+	desc = "The third fortnight of polling has begun!"
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		has_country_flag = socialists_on2
+		OR = {
+			has_country_flag = liberal_on2
+		}
+		OR = {
+			has_country_flag = tories_on2
+		}
+	}
+	mean_time_to_happen = { days = 14 }
+	immediate = {
+		set_country_flag = election
+	}
+	option = {
+		name = "Socialists!"
+		trigger = {
+			social_democrat > 0.5
+			OR = {
+				if = {
+					limit = {
+						social_conservative < 0.4
+						social_democrat < 0.4
+						social_liberal < 0.4
+						market_liberal < 0.4
+						radical_socialist < 0.4
+						authoritarian_democrat < 0.4
+					}
+					social_democrat < 1
+				}
+			}
+		}
+		set_politics = {
+			ruling_party = social_democrat
+		}
+		set_country_flag = socialists_won
+		remove_ideas = socialists_on
+		remove_ideas = socialists_on2
+		remove_ideas = socialists_on3
+	}
+	option = {
+		name = "Socialists!"
+		trigger = {
+			radical_socialist > 0.5
+			OR = {
+				if = {
+					limit = {
+						social_conservative < 0.4
+						social_democrat < 0.4
+						social_liberal < 0.4
+						market_liberal < 0.4
+						radical_socialist < 0.4
+						authoritarian_democrat < 0.4
+					}
+					radical_socialist < 1
+				}
+			}
+		}
+		set_politics = {
+			ruling_party = radical_socialist
+		}
+		set_country_flag = socialists_won2
+		remove_ideas = socialists_on
+		remove_ideas = socialists_on2
+		remove_ideas = socialists_on3
+	}
+	option = {
+		name = "Liberals!"
+		trigger = {
+			market_liberal > 0.4
+		}
+		set_politics = {
+			ruling_party = market_liberal
+		}
+		set_country_flag = liberal_won
+		remove_ideas = GRU_liberal_rise3
+		remove_ideas = GRU_liberal_rise2
+		remove_ideas = GRU_liberal_rise
+	}
+	option = {
+		name = "Liberals!"
+		trigger = {
+			social_liberal > 0.4
+			OR = {
+				if = {
+					limit = {
+						social_conservative < 0.4
+						social_democrat < 0.4
+						social_liberal < 0.4
+						market_liberal < 0.4
+						radical_socialist < 0.4
+						authoritarian_democrat < 0.4
+					}
+					social_liberal < 1
+				}
+			}
+		}
+		set_politics = {
+			ruling_party = social_liberal
+		}
+		set_country_flag = liberal_won2
+		remove_ideas = GRU_liberal_rise3
+		remove_ideas = GRU_liberal_rise2
+		remove_ideas = GRU_liberal_rise
+	}
+	option = {
+
+		name = "Conservatives!"		
+		trigger = {
+			social_conservative > 0.4
+			OR = {
+				if = {
+					limit = {
+						social_conservative < 0.4
+						social_democrat < 0.4
+						social_liberal < 0.4
+						market_liberal < 0.4
+						radical_socialist < 0.4
+						authoritarian_democrat < 0.4
+					}
+					social_conservative < 1
+				}
+			}
+		}
+		set_politics = {
+			ruling_party = social_conservative
+		}
+		set_country_flag = tories_won
+		remove_ideas = GRU_tory_rise3
+		remove_ideas = GRU_tory_rise2
+		remove_ideas = GRU_tory_rise
+	}
+	option = {
+
+		name = "Conservatives!"		
+		trigger = {
+			authoritarian_democrat > 0.4
+			OR = {
+				if = {
+					limit = {
+						social_conservative < 0.4
+						social_democrat < 0.4
+						social_liberal < 0.4
+						market_liberal < 0.4
+						radical_socialist < 0.4
+						authoritarian_democrat < 0.4
+					}
+					authoritarian_democrat < 1
+				}
+			}
+		}
+		set_politics = {
+			ruling_party = authoritarian_democrat
+		}
+		set_country_flag = tories_won2
+		remove_ideas = GRU_tory_rise3
+		remove_ideas = GRU_tory_rise2
+		remove_ideas = GRU_tory_rise
 	}
 }

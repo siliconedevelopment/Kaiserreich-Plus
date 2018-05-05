@@ -548,7 +548,10 @@ country_event = {
 		name = "Death to Azerbaijan!"
 		load_oob = "GEO"
 		country_event = { id = geo.10 hours = 24 }
+
 		add_country_leader_trait = warmonger 
+
+
 	}
 	option = {
 		ai_chance = {

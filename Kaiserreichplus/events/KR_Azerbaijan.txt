@@ -40,6 +40,9 @@ country_event = {
 		name = "End the war"
 		ai_chance = { factor = 50 }
 		white_peace = GEO
+
 		delete_unit_template_and_units = { division_template = "Kartuli Bolshevik’uri Ganmatavisuplebeli Armia" } 
+
+
 	}
 }

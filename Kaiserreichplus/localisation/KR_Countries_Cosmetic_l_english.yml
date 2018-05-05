@@ -638,12 +638,18 @@ POL_REPUBLIC_syndicalist_ADJ:0 "Socialist-Polish"
 
 POL_REPUBLIC_syndicalist_DEF:0 "the Polish Socialist Republic"
 
+
 POL_REPUBLIC_totalist:0 "Polish Soviet Socialist Republic"
 
 POL_REPUBLIC_totalist_ADJ:0 "Socialist-Polish"
 
 POL_REPUBLIC_totalist_DEF:0 "the Polish SSR"
 
+
+
+POL_REPUBLIC_totalist:0 "Polish Soviet Socialist Republic"
+POL_REPUBLIC_totalist_ADJ:0 "Socialist-Polish"
+POL_REPUBLIC_totalist_DEF:0 "the Polish SSR"
 
 
 PRF_EMP_authoritarian_democrat:0 "Indian Empire"
@@ -1504,6 +1510,7 @@ GEO_Republic_totalist_DEF:0 "the Georgian Republic"
 
 
 
+
 GEO_coup_authoritarian_democrat:0 "Georgian Military Government"
 
 GEO_coup_authoritarian_democrat_ADJ:0 "Georgian"
@@ -1564,6 +1571,39 @@ GEO_coup_totalist_ADJ:0 "Georgian"
 
 GEO_coup_totalist_DEF:0 "the Georgian Military Government"
 
+
+
+
+GEO_coup_authoritarian_democrat:0 "Georgian Military Government"
+GEO_coup_authoritarian_democrat_ADJ:0 "Georgian"
+GEO_coup_authoritarian_democrat_DEF:0 "the Georgian Military Government"
+GEO_coup_market_liberal:0 "Georgian Military Government"
+GEO_coup_market_liberal_ADJ:0 "Georgian"
+GEO_coup_market_liberal_DEF:0 "the Georgian Military Government"
+GEO_coup_national_populist:0 "Georgian Military Government"
+GEO_coup_national_populist_ADJ:0 "Georgian"
+GEO_coup_national_populist_DEF:0 "the Georgian Military Government"
+GEO_coup_paternal_autocrat:0 "Georgian Military Government"
+GEO_coup_paternal_autocrat_ADJ:0 "Georgian"
+GEO_coup_paternal_autocrat_DEF:0 "the Georgian Military Government"
+GEO_coup_radical_socialist:0 "Georgian Military Government"
+GEO_coup_radical_socialist_ADJ:0 "Georgian"
+GEO_coup_radical_socialist_DEF:0 "the Georgian Military Government"
+GEO_coup_social_conservative:0 "Georgian Military Government"
+GEO_coup_social_conservative_ADJ:0 "Georgian"
+GEO_coup_social_conservative_DEF:0 "the Georgian Military Government"
+GEO_coup_social_democrat:0 "Georgian Military Government"
+GEO_coup_social_democrat_ADJ:0 "Georgian"
+GEO_coup_social_democrat_DEF:0 "the Georgian Military Government"
+GEO_coup_social_liberal:0 "Georgian Military Government"
+GEO_coup_social_liberal_ADJ:0 "Georgian"
+GEO_coup_social_liberal_DEF:0 "the Georgian Military Government"
+GEO_coup_syndicalist:0 "Georgian Military Government"
+GEO_coup_syndicalist_ADJ:0 "Georgian"
+GEO_coup_syndicalist_DEF:0 "the Georgian Military Government"
+GEO_coup_totalist:0 "Georgian Military Government"
+GEO_coup_totalist_ADJ:0 "Georgian"
+GEO_coup_totalist_DEF:0 "the Georgian Military Government"
 
 
 GEO_kingdom_authoritarian_democrat:0 "Georgian Kingdom"
