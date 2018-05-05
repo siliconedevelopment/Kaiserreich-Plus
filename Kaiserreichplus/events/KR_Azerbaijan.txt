@@ -1,0 +1,44 @@
+country_event = {
+	id = azerbaijan.1
+	title = "The Georgian Coup!"
+	desc = "The \"Georgian Military Government\" has took over the majority of Georgia, some say that they may invade Azerbaijan, what should we do? "
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 3 }
+	option = {
+		name = "Liberate Georgia!"
+		ai_chance = { factor = 100 }
+		retire_country_leader = yes
+		set_country_flag = beria
+		create_country_leader = {
+			name = "Lavrentij Beria"
+			desc = "POLITICS_BERIA_DESC"
+			picture = "Portrait_Georgia_Beria.tga"
+			expire = "1965.1.1"
+			ideology = leninist
+			traits = {}
+		}
+
+		declare_war_on = { target = GEO type = annex_everything }
+		load_oob = "GEO_war"
+	}
+}
+country_event = {
+	id = azerbaijan.2
+	title = "The Georgia seeks peace!"
+	desc = "The \"Georgian Military Government\" has asked for peace. They say it is beneficial to both nations, what should we do?"
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 3 }
+	option = {
+		name = "Continue the liberation!"
+		ai_chance = { factor = 50 }
+	}
+	option = {
+		name = "End the war"
+		ai_chance = { factor = 50 }
+		white_peace = GEO
+	}
+}

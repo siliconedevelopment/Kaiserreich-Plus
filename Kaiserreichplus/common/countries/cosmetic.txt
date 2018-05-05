@@ -159,5 +159,9 @@ JBS_UAE = {
 }
 GER_communist = {
 	color = rgb { 255 15 15 }
-	color_ui = rgb = { 255 15 16 }
+	color_ui = rgb { 255 15 16 }
+}
+GEO_coup = {
+	color = rgb { 172 187 243 }
+	color_ui = rgb { 172 187 249 }
 }
