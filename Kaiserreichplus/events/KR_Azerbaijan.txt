@@ -34,6 +34,7 @@ country_event = {
 		declare_war_on = { target = GEO type = annex_everything }
 		load_oob = "GEO_war"
 		remove_ideas_with_trait = foreign_minister
+		add_ideas = AZR_monatte
 	}
 }
 country_event = {
