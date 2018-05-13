@@ -212,6 +212,7 @@ ideologies = {
 	authoritarian_democrat = {
 		types = {
 			authoritarian_democrat_subtype = {}
+			military_junta_autdem = {}
 		}
 		dynamic_faction_names = {
 			"FACTION_NAME_AUTHORITARIAN_DEMOCRAT_1"
@@ -239,6 +240,7 @@ ideologies = {
 	paternal_autocrat = {
 		types = {
 			paternal_autocrat_subtype = {}
+			military_junta = {}
 		}
 		dynamic_faction_names = {
 			"FACTION_NAME_PATERNAL_AUTOCRAT_1"

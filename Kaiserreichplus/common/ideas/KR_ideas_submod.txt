@@ -1,0 +1,177 @@
+ideas = {
+	foreign_minister = {
+		AZR_monatte = {
+			allowed = {
+				original_tag = "AZR"
+				has_government = radical_socialist
+				OR = {
+					has_government = totalist
+				}
+			}
+			traits = { 
+				radical_socialist_booster 
+				foreign_minister
+				for_biased_intellectual
+			}
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: add idea AZR_monatte"
+			}
+			do_effect = {
+				has_government = radical_socialist
+				has_government = totalist
+			}
+			ai_will_do = { factor = 0 }
+		}
+		AZR_new_monatte = {
+			allowed = {
+				original_tag = "AZR"
+				has_government = radical_socialist
+				OR = {
+					has_government = totalist
+				}
+			}
+			traits = { 
+				radical_socialist_booster 
+				foreign_minister
+				for_biased_intellectual
+			}
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: add idea AZR_new_monatte"
+			}
+			do_effect = {
+				has_government = radical_socialist
+				has_government = totalist
+			}
+			ai_will_do = { factor = 0 }
+		}
+		AZR_yusif = {
+			allowed = {
+				original_tag = "AZR"
+
+				has_government = totalist
+				
+			}
+			traits = { 
+				totalist_booster 
+				foreign_minister
+				for_biased_intellectual
+			}
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: add idea AZR_yusif"
+			}
+			do_effect = {
+				has_government = totalist
+			}
+			ai_will_do = { factor = 0 }
+		}
+	}
+	economy_minister = {
+		AZR_beria = {
+			allowed = {
+				original_tag = "AZR"
+
+				has_government = totalist
+				
+			}
+			traits = { 
+				totalist_booster 
+				economy_minister
+				eco_balanced_budget_economy
+				azr_president
+			}
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: add idea AZR_beria"
+			}
+			do_effect = {
+				has_government = totalist
+			}
+			ai_will_do = { factor = 0 }
+		}
+		AZR_ali = {
+			allowed = {
+				original_tag = "AZR"
+
+				has_government = totalist
+				
+			}
+			traits = { 
+				totalist_booster 
+				economy_minister
+				eco_planned_economy_proponent
+			}
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: add idea AZR_ali"
+			}
+			do_effect = {
+				has_government = totalist
+			}
+			ai_will_do = { factor = 0 }
+		}
+	}
+	head_of_government = {
+		AZR_beria_gov = {
+			allowed = {
+				original_tag = "AZR"
+
+				has_government = totalist
+				
+			}
+			traits = { 
+				totalist_booster 
+				head_of_government
+				hog_happy_amateur
+				azr_president
+			}
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: add idea AZR_beria_gov"
+			}
+			do_effect = {
+				has_government = totalist
+			}
+			ai_will_do = { factor = 0 }
+		}		
+
+		AZR_piere = {
+			allowed = {
+				original_tag = "AZR"
+
+				has_government = totalist
+				
+			}
+			traits = { 
+				radical_socialist_booster 
+				head_of_government
+				hog_happy_amateur
+				azr_president
+			}
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: add idea AZR_beria_gov"
+			}
+			do_effect = {
+				has_government = totalist
+			}
+			ai_will_do = { factor = 0 }
+		}	
+		AZR_marenglen  = {
+			allowed = {
+				original_tag = "AZR"
+
+				has_government = totalist
+				
+			}
+			traits = { 
+				totalist_booster
+				head_of_government
+				hog_happy_amateur
+				azr_president
+			}
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: add idea AZR_beria_gov"
+			}
+			do_effect = {
+				has_government = totalist
+			}
+			ai_will_do = { factor = 0 }
+		}		
+	}
+}

@@ -19,9 +19,21 @@ country_event = {
 			ideology = leninist
 			traits = {}
 		}
-
+		create_country_leader = {
+			name = "Pierre Monatte"
+			desc = "A French exile due to his ties to Market Socialism, he is currently the leader of a extra-parliamentary party called the \"Liberation of Socialist Democracy\" which is committed to Monatteism"
+			#picture = "Pierre_Monatte.dds"
+			expire = "1965.1.1"
+			ideology = market_socialist 
+			traits = {
+				#
+			}
+		}
+		set_party_name = { ideology = radical_socialist long_name = "Liberation of Socialist Democracy" name = "LSD" }
+		set_political_party = { ideology = radical_socialist popularity = 0.05 } 
 		declare_war_on = { target = GEO type = annex_everything }
 		load_oob = "GEO_war"
+		remove_ideas_with_trait = foreign_minister
 	}
 }
 country_event = {
@@ -42,7 +54,176 @@ country_event = {
 		white_peace = GEO
 
 		delete_unit_template_and_units = { division_template = "Kartuli Bolshevik’uri Ganmatavisuplebeli Armia" } 
+		set_country_flag = peaceGEOAZR
 
+	}
+}
+country_event = {
+	id = azerbaijan.3
+	title = "Seek a new government?"
+	desc = "The government has voted for no confidence against [ROOT.GetLeader] for not winning the war against [GEO.GetName] and their military government. They say it is beneficial to elect a new cabinet and government. What should we do?"
+	trigger = {
+		has_country_flag = peaceGEOAZR
+		tag = AZR
+	}
+	fire_only_once = yes
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 48 }
+	option = {
+		name = "Depose [ROOT.GetLeader]!"
+		ai_chance = { factor = 50 }
+		remove_ideas_with_trait = head_of_government
+		remove_ideas_with_trait = economy_minister
+		remove_ideas_with_trait = foreign_minister
+		remove_ideas_with_trait = head_of_intel
+		country_event = { id = azerbaijan.4 hours = 24 }
+		create_country_leader = {
+			name = "Lavrena Jighba"
+			desc = ""
+			picture = "Portrait_Georgia_Beria.tga"
+			expire = "1965.1.1"
+			ideology = leninist
+			traits = {
+				
+			}
+		}
+	}
+	option = {
+		name = "Declare martial law!"
+		ai_chance = { factor = 50 }
+		set_politics = { ruling_party = paternal_autocrats elections_allowed = no }
+		set_party_name { ideology = paternal_autocrats long_name = "Azerbaijan Supreme Soviet Military Dictatorship" name = "ASSMD" }
+		create_country_leader = {
+			name = "Lavrentij Beria"
+			desc = "POLITICS_BERIA_DESC"
+			picture = "Portrait_Georgia_Beria.tga"
+			expire = "1965.1.1"
+			ideology = military_junta
+			traits = {
+				dictator
+			}
+		}
+	}
+}
+country_event = {
+	id = azerbaijan.4
+	title = "Seek a new foreign minister?"
+	desc = "The government has voted for no confidence against Beria for not winning the war against [GEO.GetName] and their military government. The foreign minister was kicked out off office, however we could make a deal with Monatte at some time, or should we elect a new foreign_minister?"
 
+	fire_only_once = yes
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 48 }
+	option = {
+		name = "Reelect Monatte!"
+		ai_chance = { factor = 50 }
+		add_ideas = AZR_new_monatte
+		country_event = { id = azerbaijan.5 hours = 24 }
+		set_country_flag = pierre_for
+	}
+	option = {
+		name = "Elect Yusif Huseynov!"
+		ai_chance = { factor = 20 }
+		country_event = { id = azerbaijan.5 hours = 24 }
+		add_ideas = AZR_yusif
+	}
+	option = {
+		name = "Declare martial law!"
+		ai_chance = { factor = 30 }
+		set_politics = { ruling_party = paternal_autocrats elections_allowed = no }
+		set_party_name { ideology = paternal_autocrats long_name = "Azerbaijan Supreme Soviet Military Dictatorship" name = "ASSMD" }
+		create_country_leader = {
+			name = "Lavrentij Beria"
+			desc = "POLITICS_BERIA_DESC"
+			picture = "Portrait_Georgia_Beria.tga"
+			expire = "1965.1.1"
+			ideology = military_junta
+			traits = {
+				dictator
+			}
+		}
+	}
+}
+country_event = {
+	id = azerbaijan.5
+	title = "Seek a new economic minister?"
+	desc = "The government has voted for no confidence against Beria for not winning the war against [GEO.GetName] and their military government. The economic minister was killed during the war against Georgia, should we elect a new economy_minister or let the president become the economy_minister?"
+	fire_only_once = yes
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 48 }
+	option = {
+		name = "Elect Beria!"
+		ai_chance = { factor = 80 }
+		add_ideas = AZR_beria
+		country_event = { id = azerbaijan.5 hours = 24 }
+	}
+	option = {
+		name = "Elect Ali Zaadeh!"
+		ai_chance = { factor = 5 }
+		country_event = { id = azerbaijan.5 hours = 24 }
+		add_ideas = AZR_ali
+	}
+	option = {
+		name = "Declare martial law!"
+		ai_chance = { factor = 15 }
+		set_politics = { ruling_party = paternal_autocrats elections_allowed = no }
+		set_party_name { ideology = paternal_autocrats long_name = "Azerbaijan Supreme Soviet Military Dictatorship" name = "ASSMD" }
+		create_country_leader = {
+			name = "Lavrentij Beria"
+			desc = "POLITICS_BERIA_DESC"
+			picture = "Portrait_Georgia_Beria.tga"
+			expire = "1965.1.1"
+			ideology = military_junta
+			traits = {
+				dictator
+			}
+		}
+	}
+}
+country_event = {
+	id = azerbaijan.6
+	title = "Seek a new head of government?"
+	desc = "The government has voted for no confidence against Beria for not winning the war against [GEO.GetName] and their military government. The Beria was killed during the war against Georgia, however we could make a deal with Beria at some time, should we elect Beria as Prime Minister of the Soviet or let the president decide on a different candidate?"
+	fire_only_once = yes
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 48 }
+	option = {
+		name = "Elect Beria!"
+		ai_chance = { factor = 45 }
+		add_ideas = AZR_beria_gov
+		country_event = { id = azerbaijan.5 hours = 24 }
+	}
+	option = {
+		name = "Elect Pierre Monatte!"
+		trigger = {
+			NOT = { has_country_flag = pierre_for }
+		}
+		ai_chance = { factor = 28 }
+		country_event = { id = azerbaijan.5 hours = 24 }
+		add_ideas = AZR_piere
+	}
+	option = {
+		name = "Elect Marenglen Prishtina-Emri Zogolli!"
+		trigger = {
+			NOT = { has_country_flag = pierre_for }
+		}
+		ai_chance = { factor = 28 }
+		country_event = { id = azerbaijan.5 hours = 24 }
+		add_ideas = AZR_marenglen
+	}
+	option = {
+		name = "Declare martial law!"
+		ai_chance = { factor = 27 }
+		set_politics = { ruling_party = paternal_autocrats elections_allowed = no }
+		set_party_name { ideology = paternal_autocrats long_name = "Azerbaijan Supreme Soviet Military Dictatorship" name = "ASSMD" }
+		create_country_leader = {
+			name = "Lavrentij Beria"
+			desc = "POLITICS_BERIA_DESC"
+			picture = "Portrait_Georgia_Beria.tga"
+			expire = "1965.1.1"
+			ideology = military_junta
+			traits = {
+				dictator
+			}
+		}
 	}
 }

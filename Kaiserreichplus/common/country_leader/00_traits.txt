@@ -1,0 +1,33 @@
+leader_traits = {
+
+
+	radical_socialist_booster = {
+		
+		random = no
+		radical_socialist_drift = 0.1
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	totalist_booster = {
+		
+		random = no
+		totalist_drift = 0.1
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	azr_president = {
+		
+		random = no
+		army_infantry_attack_factor = 0.15 
+		max_dig_in = 1 
+		army_speed_factor = 0.25
+		army_org_Factor = -0.05		
+		training_time_army_factor = 0.1 
+		war_support_weekly = 0.003 
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}
