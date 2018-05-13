@@ -795,7 +795,7 @@ country_event = {
 	}
 }
 country_event = {
-	id = germanunion.3
+	id = germanunion.6
 	title = " Election of [ROOT.GetName] - Election Day"
 	desc = "The third fortnight of polling has begun!"
 	is_triggered_only = yes
