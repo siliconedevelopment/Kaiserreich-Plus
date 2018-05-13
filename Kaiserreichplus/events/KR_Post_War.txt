@@ -134,7 +134,7 @@ country_event = {
 
 	option = {
 		name = "Create the Union of Nations!"
-		any_allied_country = {
+		all_allied_country = {
 			country_event = { id = postwar.10 hours = 10 }
 		} 
 		news_event = { id = postwarnewsa.9 hours = 34 }
