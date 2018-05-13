@@ -1,0 +1,201 @@
+﻿###########################
+# Post War Events
+###########################
+# By Nijato
+# Gutted by Zankoas
+###########################
+
+### Various post-war events like the cores and redrawing the map files in DH ###
+
+add_namespace = postwar
+
+#### Cores
+
+country_event = { #Western Poland Regained
+	id = postwar.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event postwar.5"}
+	title = postwar.5.t
+	desc = postwar.5.d
+
+	fire_only_once = yes
+
+	trigger = {
+		OR = { tag = POL tag = PLC }
+		controls_state = 86
+	}
+
+	mean_time_to_happen = {
+		days = 1
+	}
+
+	option = {
+		name = postwar.5.a
+		add_state_core = 86
+		add_political_power = 20
+
+	}
+}
+
+country_event = { #Brest Litovsk Voivodeship Regained
+	id = postwar.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event postwar.6"}
+	title = postwar.6.t
+	desc = postwar.6.d
+
+	fire_only_once = yes
+
+	trigger = {
+		OR = { tag = POL tag = PLC }
+		controls_state = 94
+		controls_state = 95
+	}
+
+	mean_time_to_happen = {
+		days = 1
+	}
+
+	option = {
+		name = postwar.6.a
+		add_state_core = 94
+		add_state_core = 95
+		add_political_power = 20
+
+	}
+}
+
+country_event = { #Wolyn Voivodeship Regained
+	id = postwar.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event postwar.7"}
+	title = postwar.7.t
+	desc = postwar.7.d
+
+	fire_only_once = yes
+
+	trigger = {
+		OR = { tag = POL tag = PLC }
+		controls_state = 93
+	}
+
+	mean_time_to_happen = {
+		days = 1
+	}
+
+	option = {
+		name = postwar.7.a
+		add_state_core = 93
+		add_political_power = 40
+
+	}
+}
+country_event = { #Galicia and Lodomeria Regained
+	id = postwar.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event postwar.8"}
+	title = postwar.8.t
+	desc = postwar.8.d
+
+	fire_only_once = yes
+
+	trigger = {
+		OR = { tag = POL tag = PLC }
+		controls_state = 88
+		controls_state = 91
+	}
+
+	mean_time_to_happen = {
+		days = 1
+	}
+
+	option = {
+		name = postwar.8.a
+		add_state_core = 88
+		add_state_core = 89
+		add_state_core = 91
+		add_state_core = 80
+		add_political_power = 40
+
+	}
+}
+country_event = {
+	id = postwar.9
+	title = "Create an international organization?"
+	desc = "The Pacific CIA has drawn up an idea to create an international organization to fight syndicalism, and mimicking the League of Nations that was created from 1921-1933. We should create it to benefit ourselves"
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	trigger = {
+		tag = PSA
+		date < 1943.1.1
+		date > 1942.10.10
+	}
+
+	mean_time_to_happen = {
+		days = 1
+	}
+
+	option = {
+		name = "Create the Union of Nations!"
+		any_allied_country = {
+			country_event = { id = postwar.10 hours = 10 }
+		} 
+		news_event = { id = postwarnewsa.9 hours = 34 }
+		set_country_flag = UN
+	}
+}
+country_event = {
+	id = postwar.10
+	title = "Join the UN?"
+	desc = "The Pacific CIA has drawn up an idea to create an international organization to fight syndicalism, and mimicking the League of Nations that was created from 1921-1933. Should we join?"
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = "Join the Union of Nations!"
+		set_country_flag = UN
+	}
+}
+add_namespace = postwarnewsa
+news_event = {
+	id = postwarnewsa.9
+	title = "The Union of Nations Treaty"
+	desc = "The UN Treaty is a treaty that plans for an international co-federal organization to combat extremism, help with humanitarian crisises, and world peace. It is founded by the Pacific States of America, Canada and National France. The goal right now is to fight the Communards and the Third Internationale"
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = "Good for them"
+		trigger = {
+			NOT = {
+				tag = NFA
+				tag = CAN
+				tag = FRA
+				tag = ITA
+				tag = ENG
+				is_subject_of = FRA
+				has_country_flag = UN
+			}
+		}
+		add_stability = 0.03
+	}
+	option = {
+		name = "This fake international is tricking the workers! The Third Internationale is the only international that can survive!"
+		trigger = {
+			tag = FRA
+			is_subject_of = FRA
+			is_subject_of = ENG
+			tag = ENG
+			tag = WLL
+			has_socialist_government = yes
+		}
+		add_stability = -0.03
+		add_war_support = 0.03
+	}	
+	option = {
+		name = "For the UN!"
+		trigger = {
+			tag = NFA
+			tag = CAN
+			tag = PSA
+			has_country_flag = UN
+		}
+		add_stability = 0.10
+	}
+}
