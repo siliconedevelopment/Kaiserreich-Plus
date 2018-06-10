@@ -6,6 +6,30 @@ add_namespace = geo
 add_namespace = geohidden
 # Georgia introduction
 country_event = {
+	id = geo.0
+	title = "Georgia declares unilateral independence!"
+	desc = "The Revolutionary Georgian Committee, the government-in-exile has launched a successful storming of the Tbilisi Oblast, what should we do?"
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = RUS
+		GEO = { exists = no }
+		date > 1941.8.8
+		date < 1941.8.10
+	}
+	option = {
+		name = "To war!"
+		release = GEO
+		GEO = {
+			load_oob = "OOB"
+		}
+		declare_war_on = {
+			type = annex_everything
+			target = GEO
+		}
+	}
+}
+country_event = {
 	id = geo.1
 	immediate = {log = "[GetDateText]: [Root.GetName]: event geo.1"}
 	title = geo.1.t
@@ -41,7 +65,7 @@ country_event = {
 	mean_time_to_happen = { days = 3 }
 	option = {
 		name = "Invade!"
-		ai_chance = { factor = 45 }
+		ai_chance = { factor = 55 }
 		set_country_flag = beriageo
 		random_list = { 
 			65 = { 
@@ -133,7 +157,7 @@ country_event = {
 country_event = {
 	id = geo.4
 	title = "Stalin takes control!"
-	desc = "Stalin, one of our ministers has took control over the government whilst [GetLeader] was on a state visit to Baku, discussing the reestablishment of Transcaucaisa with [AZB.GetLeader]. This will lead to civil war."
+	desc = "Stalin, one of our ministers has took control over the government whilst [ROOT.GetLeader] was on a state visit to Baku, discussing the reestablishment of Transcaucaisa with [AZB.GetLeader]. This will lead to civil war."
 
 	fire_only_once = yes
 	is_triggered_only = yes
@@ -208,7 +232,7 @@ country_event = {
 		AZB = {
 			declare_war_on = { target = GEO type = annex_everything }
 		}
-		GEO = { change_tag_from = AZB }
+		AZB = { change_tag_from = GEO }
 	}
 	option = {
 		name = "Organize a coup!"
@@ -485,7 +509,7 @@ country_event = {
 			every_owned_state = { add_core_of = GEO } 
 			white_peace = OTT
 			white_peace = TUR
-			1001 = { set_state_name = "Laziani" } 
+			1001 = { set_state_name = "Lazona" } 
 		}
 	}
 }
